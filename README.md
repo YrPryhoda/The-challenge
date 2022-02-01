@@ -30,11 +30,5 @@
 
 4) Extra points for adding eslint
 
-   1) Extra point for adding unit tests
-
-      "react": "^15.3.2",
-      "react-dom": "^15.3.2",
-      "react-redux": "^4.4.5",
-      "redux": "^3.6.0",
-      "redux-thunk": "^2.1.0"
-   "nwb": "0.12.x"
+5) Extra point for adding unit tests
+   
