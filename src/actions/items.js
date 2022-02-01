@@ -1,21 +1,17 @@
-export function itemsFetchDataSuccess(items) {
-    return {
-        type: 'ITEMS_FETCH_DATA_SUCCESS',
-        items
-    };
-}
+import {createAsyncThunk} from '@reduxjs/toolkit';
 
-export function itemsFetchData(url) {
-    return (dispatch) => {
-        fetch(url)
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
+const module = 'items';
+const apiUrl = 'http://5af1eee530f9490014ead8c4.mockapi.io';
 
-                return response;
-            })
-            .then((response) => response.json())
-            .then((items) => dispatch(itemsFetchDataSuccess(items)));
-    };
-}
+export const fetchItems = createAsyncThunk(
+    `${module}/fetch`,
+    async (payload, {rejectWithValue}) => {
+        const response = await fetch(`${apiUrl}/items`);
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw rejectWithValue(data);
+        }
+
+        return data;
+    });
